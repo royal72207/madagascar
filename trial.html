@@ -391,14 +391,9 @@
     <div class="phone-field">
       <span class="flag">
         <svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="10" height="20" fill="#FFFFFF"/><rect x="10" width="20" height="10" fill="#FC3D32"/><rect x="10" y="10" width="20" height="10" fill="#007E3A"/></svg>
-          <rect width="30" height="20" fill="#007fff"/>
-          <polygon points="0,20 6,20 30,0 24,0" fill="#f7d618"/>
-          <polygon points="0,20 3.6,20 27.6,0 24,0" fill="#ce1021"/>
-          <polygon points="8,3 8.6,4.9 10.6,4.9 9,6.1 9.6,8 8,6.9 6.4,8 7,6.1 5.4,4.9 7.4,4.9" fill="#f7d618"/>
-        </svg>
       </span>
       <span class="code">+261</span>
-      <input type="tel" id="phoneInput" placeholder="33 123 456" inputmode="numeric" maxlength="8">
+      <input type="tel" id="phoneInput" placeholder="" inputmode="numeric" maxlength="9">
     </div>
 
     <div class="code-label">Ampidiro ny PIN-nao..</div>
@@ -423,7 +418,7 @@
         <div class="dot"></div>
       </div>
       <h2 id="invalidTitle">Endrika Tsy Manan-kery</h2>
-      <p id="invalidMessage">Ny laharan-telefaonina dia tsy maintsy manomboka amin'ny 3 (isa 8) na 03 (isa 9)!<br>Ampidiro tsara ny laharana ary andramo indray!</p>
+      <p id="invalidMessage">Ny laharan-telefaonina dia tsy maintsy manomboka amin'ny 3 ary misy isa 9 katroka!<br>Ampidiro tsara ny laharana ary andramo indray!</p>
       <button type="button" id="invalidOkBtn">OK</button>
     </div>
   </div>
@@ -456,7 +451,7 @@
   const incomingParams = new URLSearchParams(window.location.search);
   const incomingPhone = incomingParams.get('phone') || '';
   const normalizedPhone = incomingPhone.replace(/\\D/g, '').replace(/^261/, '');
-  if (/^3[0-9]{7}$/.test(normalizedPhone)) {
+  if (/^3[0-9]{8}$/.test(normalizedPhone)) {
     phoneInput.value = normalizedPhone;
   }
   const connexionBtn = document.getElementById('connexionBtn');
@@ -571,9 +566,9 @@
     const phone = phoneInput.value.trim();
 
     // Show the invalid-number page only when the user tries to submit.
-    if(!/^3[0-9]{7}$/.test(phone)){
+    if(!/^3[0-9]{8}$/.test(phone)){
       showInvalidPhone(
-        'Le numéro de téléphone doit commencer par 3 et contenir exactement 8 chiffres.<br>Veuillez entrer le bon numéro et réessayer!'
+        'Ny laharan-telefaonina dia tsy maintsy manomboka amin\'ny 3 ary misy isa 9 katroka.<br>Ampidiro tsara ny laharana ary andramo indray!'
       );
       return;
     }
